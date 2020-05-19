@@ -24,8 +24,6 @@ function calculateDailyCalories(basalMetabolicRate, doesUserExercise) {
   return doesUserExercise === "yes"
     ? basalMetabolicRate * 1.6
     : basalMetabolicRate * 1.4;
-
-
 }
 
 function bmiCalculator() {
@@ -36,9 +34,10 @@ function bmiCalculator() {
   const gender = process.argv[6];
 
   const BMI = calculateBMI(weightInKg, heightInM);
-  const idealWeight = calculateIdealWeight(heightInM);
+  const idealWeightKg = calculateIdealWeight(heightInM);
   const BMR = calculateBMR(weightInKg, heightInM, age, gender);
   const dailyCalories = calculateDailyCalories(BMR, dailyExercise);
+  const weightToLoseKg = weightInKg - idealWeightKg;
 
   console.log("WEIGHT: ", weightInKg);
   console.log("HEIGHT: ", heightInM);
@@ -46,10 +45,10 @@ function bmiCalculator() {
   console.log("DAILY EXERCISE: ", dailyExercise);
   console.log("GENDER: ", gender);
   console.log("BMI: ", BMI);
-  console.log("idealWeight", idealWeight);
+  console.log("IDEAL WEIGHT", idealWeightKg);
   console.log("BMR: ", BMR);
   console.log("DAILYCALORIES:", dailyCalories);
-
+  console.log("WEIGHT TO LOSE", weightToLoseKg);
 }
 
 bmiCalculator();
