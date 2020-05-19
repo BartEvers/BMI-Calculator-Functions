@@ -119,6 +119,41 @@ function validateGender(genderOfUser) {
   }
 }
 
+function formatOutput(userObject) {
+  return `
+      **************
+      BMI CALCULATOR
+      **************
+  
+      age: ${userObject.age} years
+      gender: ${userObject.gender}
+      height: ${userObject.heightInM} m
+      weight: ${userObject.weightInKg} kg
+      do you exercise daily? ${userObject.dailyExercise}
+  
+      ****************
+      FACING THE FACTS
+      ****************
+  
+      Your BMI is ${userObject.BMI}
+  
+      A BMI under 18.5 is considered underweight
+      A BMI above 25 is considered overweight
+  
+      Your ideal weight is ${userObject.weightInKg} kg
+      With a normal lifestyle you burn ${userObject.dailyCalories} calories a day
+  
+      **********
+      DIET PLAN
+      **********
+  
+      If you want to reach your ideal weight of ${userObject.idealWeightKg} kg:
+  
+      Eat ${userObject.dietCalories} calories a day
+      For ${userObject.dietWeeks} weeks
+      `;
+}
+
 function bmiCalculator() {
   validateNumberOfInputs(process.argv);
 
@@ -139,6 +174,23 @@ function bmiCalculator() {
   const weightToLoseKg = weightInKg - idealWeightKg;
   const dietWeeks = calculateDietWeeks(weightToLoseKg);
   const dietCalories = calculateDietCalories(weightToLoseKg, dailyCalories);
+
+  const user = {
+    weightInKg: weightInKg,
+    heightInM: heightInM,
+    age: age,
+    dailyExercise: dailyExercise,
+    gender: gender,
+    BMI: BMI,
+    idealWeightKg: idealWeightKg,
+    dailyCalories: dailyCalories,
+    weightToLoseKg: weightToLoseKg,
+    dietWeeks: dietWeeks,
+    dietCalories: dietCalories
+  };
+
+  const output = formatOutput(user);
+  console.log(output);
 }
 
 bmiCalculator();
