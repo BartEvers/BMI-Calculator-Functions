@@ -2,6 +2,10 @@ function calculateBMI(weight, height) {
   return weight / (height * height);
 }
 
+function calculateIdealWeight(height) {
+  return 22.5 * height * height;
+}
+
 function calculateBMR(weight, height, ageOfUser, genderOfUser) {
   const heightInCm = height * 100;
 
@@ -24,6 +28,7 @@ function bmiCalculator() {
   const gender = process.argv[6];
 
   const BMI = calculateBMI(weightInKg, heightInM);
+  const idealWeight = calculateIdealWeight(heightInM);
   const BMR = calculateBMR(weightInKg, heightInM, age, gender);
 
   console.log("WEIGHT: ", weightInKg);
@@ -32,6 +37,7 @@ function bmiCalculator() {
   console.log("DAILY EXERCISE: ", dailyExercise);
   console.log("GENDER: ", gender);
   console.log("BMI: ", BMI);
+  console.log("idealWeight", idealWeight);
   console.log("BMR: ", BMR);
 }
 
