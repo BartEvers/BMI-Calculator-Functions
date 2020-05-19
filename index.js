@@ -1,7 +1,19 @@
 function calculateBMI(weight, height) {
-  // we can just return the expressions
-  // That way we don't need another variable
   return weight / (height * height);
+}
+
+function calculateBMR(weight, height, ageOfUser, genderOfUser) {
+  const heightInCm = height * 100;
+
+  let BMR;
+
+  if (genderOfUser === "m") {
+    BMR = 10 * weight + 6.25 * heightInCm - 5 * ageOfUser + 50;
+  } else {
+    BMR = 10 * weight + 6.25 * heightInCm - 5 * ageOfUser - 150;
+  }
+
+  return BMR;
 }
 
 function bmiCalculator() {
@@ -12,6 +24,7 @@ function bmiCalculator() {
   const gender = process.argv[6];
 
   const BMI = calculateBMI(weightInKg, heightInM);
+  const BMR = calculateBMR(weightInKg, heightInM, age, gender);
 
   console.log("WEIGHT: ", weightInKg);
   console.log("HEIGHT: ", heightInM);
@@ -19,6 +32,7 @@ function bmiCalculator() {
   console.log("DAILY EXERCISE: ", dailyExercise);
   console.log("GENDER: ", gender);
   console.log("BMI: ", BMI);
+  console.log("BMR: ", BMR);
 }
 
 bmiCalculator();
