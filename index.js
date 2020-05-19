@@ -108,6 +108,17 @@ function validateDailyExercise(doesUserExercise) {
   }
 }
 
+function validateGender(genderOfUser) {
+  if (genderOfUser !== "m" && genderOfUser !== "f") {
+    console.log(`
+      Please specify wether you are a male "m" or female "f"
+      You entered: ${genderOfUser}
+    `);
+
+    process.exit();
+  }
+}
+
 function bmiCalculator() {
   validateNumberOfInputs(process.argv);
 
@@ -119,6 +130,7 @@ function bmiCalculator() {
 
   validateWeightHeightAndAge(weightInKg, heightInM, age, process.argv);
   validateDailyExercise(dailyExercise);
+  validateGender(gender);
 
   const BMI = calculateBMI(weightInKg, heightInM);
   const idealWeightKg = calculateIdealWeight(heightInM);
